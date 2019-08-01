@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1></h1>
+  <h2></h2>
+
+  <script src="./dist/vue.js"></script>
+
+  <script>
+    let el1 = document.querySelector('h1')
+    let el2 = document.querySelector('h2')
+    let obj1 = { name: 'hello' }
+    let obj2 = { deep: { age: 18 } }
+    let vm = new vue(obj1, el1, 'name')
+    let vm1 = new vue(obj2, el2, 'deep.age')
+
+
+    setTimeout(() => {
+      obj1.name = 'xiaopingbuxiao'
+      obj2.deep.age = 19
+    }, 1000);
+  </script>
+</body>
+
+</html>
