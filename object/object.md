@@ -2,7 +2,7 @@
 # 如何实现对对象变换的监听
 
 ## Object.defineProperty
-监听对象的改变可以使用 defineReactive 或者es6的proxy。但是proxy在浏览器中的兼容性一般。因此在 vue中是使用 defineReactive 来实现的。如下：
+监听对象的改变可以使用 defineProperty 或者es6的proxy。但是proxy在浏览器中的兼容性一般。因此在 vue中是使用 defineProperty 来实现的。如下：
 ```javascript
 /* 源码 observer/index.js */
 function defineReactive(data, key, value) {
