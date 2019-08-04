@@ -22,6 +22,7 @@ export class Watcher {
   run() {
     const value = this.get()
     const oldValue = this.value
+    this.value = value
     this.cb.call(this.vm, value, oldValue)
   }
 }
