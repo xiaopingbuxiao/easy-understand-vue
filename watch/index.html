@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 onclick="originType()">普通属性监听</h1>
+  <h2 onclick="watchFn()">$Watcher第一个参数是函数</h2>
+  <h2 onclick="DeepWatch()">深度监听</h2>
+  <h2 onclick="unDeepWatch()">取消深度监听</h2>
+
+  <script src="./dist/vue.js"></script>
+
+  <script>
+    let obj = {
+      name: 'xiaopingbuxiao',
+      age: 18,
+      num1: 1,
+      num: 0,
+      deep: {
+        name: 'xiaopingbuxiao',
+        age: 18
+      }
+    }
+
+
+    let vm = new vue(obj)
+    /* 立即触发 */
+    vm.$watch('name', function(newValue, oldValue) {
+      console.log(`立即触发name值为 ${newValue}`)
+    }, { immediate: true })
+
+
+    vm.$watch('age', function(newValue, oldValue) {
+      console.log(`age 的值从 ${oldValue} 变为了 ${newValue}`)
+    })
+
+    function originType() {
+      vm.data.age = Math.random()
+    }
+
+    vm.$watch(function() {
+      return this.data.num + this.data.num1
+    }, function(newValue, oldValue) {
+      console.log(`num + num1 +  的值从 ${oldValue} 变为了 ${newValue}`)
+    })
+
+    function watchFn() {
+      vm.data.num = Math.random() * 10
+    }
+
+
+    let unWatcher = vm.$watch('deep', function(newValue, oldValue) {
+      console.log(`deep +  的值变为了 ${JSON.stringify(newValue)}`)
+    }, { deep: true })
+
+    function DeepWatch() {
+      vm.data.deep.age += 1
+    }
+
+    function unDeepWatch() {
+      unWatcher()
+    }
+  </script>
+</body>
+
+</html>
