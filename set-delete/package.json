@@ -1,0 +1,13 @@
+{
+  "name": "array",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "rollup": "^1.19.4"
+  }
+}
