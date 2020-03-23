@@ -48,6 +48,19 @@ function mountComponent(vnode, container) {
 
 
 
+**总结：** 其实上面的两个状态分别代表了**函数式组件**和**有状态组件**。     
+区别：      
+1、函数式组件：
+* 一个纯函数
+* 没有自身状态，只接收外部数据
+* 产出 VNode 的方式：单纯的函数调用
+2、有状态组件：   
+* 是一个类，可实例化
+* 可以有自身状态
+* 产出 `VNode` 的方式：需要实例化，然后调用其 `render` 函数
+
+
+[demo](https://codesandbox.io/s/dark-glade-lz6uk)
 
 
 
@@ -57,6 +70,4 @@ function mountComponent(vnode, container) {
 
 
 
-
-
-
+### 2、vode 的设计
