@@ -18,16 +18,30 @@ function mountElement() {
 const componentVnode = {
   tag: MyComponent
 }
+class MyComponent {
+  /* render函数返回的vnode */
+  render() {
+    return {
+      tag: 'div'
+    }
+  }
+}
 ```
+
 修改 `render` 函数如下，即可实现组件渲染。
 ```js
 function render(vnode, container) {
-  mountElement(vnode, container)
   if (typeof vnode.tag === 'string') {
     mountElement(vnode, container)
   } else {
     mountComponent(vnode, container)
   }
+}
+function mountComponent(vnode, container) {
+  const instance = new vnode.tag()
+  instance.$vnode = instance.render()
+  console.log(instance.$vnode)
+  mountElement(instance.$vnode, container)
 }
 ```
 通过判断 `vnode.tag` 是否是字符串来区分 `html` 标签还是组件。
